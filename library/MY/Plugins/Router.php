@@ -10,6 +10,12 @@ class MY_Plugins_Router extends Zend_Controller_Plugin_Abstract
 	    $options = array();
 	    
 	    $options['controller'] = 'index';
+
+	    $options['action'] = 'save';
+	    $route = new Zend_Controller_Router_Route( 'save', $options );
+	    $router->addRoute('save', $route);
+
+	    // ajax...
 	    $options['action'] = 'getcitiesbycountry';
 	    $options['format'] = 'json';
 	    $options['id'] = 0;

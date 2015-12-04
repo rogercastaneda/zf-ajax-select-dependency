@@ -13,6 +13,7 @@ class IndexController extends Zend_Controller_Action
     public function indexAction()
     {
         $frm = new Application_Form_World();
+        $frm->setAction('save');
         $this->view->frm = $frm;
     }
 
@@ -25,8 +26,27 @@ class IndexController extends Zend_Controller_Action
         $this->view->result = $cityList->toArray();
     }
 
+    public function saveAction()
+    {
+    	$frm = new Application_Form_World();
+        $request = $this->getRequest();
+        if ( $request->isPost() )
+        {
+        	if ( $frm->isValid( $request->getPost() ) )
+        	{
+        		$this->view->country = $frm->getValue('country');
+        		$this->view->city = $frm->getValue('city');
+        	} else {
+        		var_dump($frm->getErrors());
+        		exit;
+        	}
+        }
+    }
+
 
 }
+
+
 
 
 
